@@ -36,11 +36,11 @@ fi
 
 
 #set endpoit — wan server ip's
-WAN_IP=$(curl 2ip.ru)
+WAN_IP=$(curl -s https://api.ipify.org)
 
-read -p "Enter the endpoint (external ip and port) in format [ipv4:port]. ([ENTER] set $WAN_IP:51820): " ENDPOINT
+read -p "Enter the endpoint (external ip and port) in format [ipv4:port]. ([ENTER] set $WAN_IP:51844): " ENDPOINT
 if [ -z $ENDPOINT ]
-  then echo "${WAN_IP}:51820" | tee ./endpoint.var; 
+  then echo "${WAN_IP}:51844" | tee ./endpoint.var; 
   else echo $ENDPOINT > ./endpoint.var
 fi
 
