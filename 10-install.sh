@@ -3,6 +3,9 @@
 # work direcrory
 WORK_DIR=/etc/wireguard
 
+# Интерфейс сети
+WAN_INTERFACE_NAME=$(ip a | grep 2: -m 1 | awk -F": " '{print $2}')
+
 # установка wireguard
 apt update && \
 apt install -y wireguard-dkms wireguard-tools qrencode
@@ -44,9 +47,9 @@ fi
 # set vpn-server vpn address
 if [ -z "$1" ]
   then 
-    read -p "Enter the server address in the VPN subnet (CIDR format), [ENTER] set to default: 10.100.200.1: " SERVER_IP
+    read -p "Enter the server address in the VPN subnet (CIDR format), [ENTER] set to default: 192.168.8.1: " SERVER_IP
     if [ -z $SERVER_IP ]
-      then SERVER_IP="10.8.8.1"
+      then SERVER_IP="192.168.8.1"
     fi
   else SERVER_IP=$1
 fi
